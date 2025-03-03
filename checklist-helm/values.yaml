@@ -1,0 +1,27 @@
+replicaCount: 1
+
+image:
+  repository: sazzeb/checklist-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  name: checklist-back-service
+  type: LoadBalancer
+  port: 80
+  targetPort: 9009
+
+ingress:
+  enabled: true
+  hosts:
+    - outlines.info
+    - www.outlines.info
+  redirectHost: https://www.outlines.info
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/permanent-redirect: "https://www.outlines.info"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  tls:
+    enabled: true
+    secretName: outlines-info-tls

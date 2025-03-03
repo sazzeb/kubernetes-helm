@@ -1,0 +1,6 @@
+apiVersion: v2
+name: checklist
+description: A Helm chart for Checklist Backend Service
+type: application
+version: 0.1.0
+appVersion: "latest"
