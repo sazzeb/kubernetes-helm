@@ -1,0 +1,26 @@
+replicaCount: 1
+
+image:
+  repository: deadly0/bull-board
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  name: bull-board-service
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+
+ingress:
+  enabled: true
+  host: bullboard.outlines.info
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "/"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  tls:
+    enabled: true
+    secretName: bullboard-info-tls
+
+env:
+  REDIS_HOST: redis-service
+  REDIS_PORT: "6379"

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: bullboard
+description: A Helm chart for Bull-Board (Redis queue UI)
+type: application
+version: 0.1.0
+appVersion: "latest"
