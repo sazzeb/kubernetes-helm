@@ -1,0 +1,19 @@
+replicaCount: 1
+
+image:
+  repository: redis
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  name: redis-service
+  type: ClusterIP
+  port: 6379
+
+persistence:
+  enabled: true
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
+  hostPath: "/mnt/data/redis"
