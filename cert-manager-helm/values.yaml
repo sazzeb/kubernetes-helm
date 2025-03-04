@@ -1,0 +1,10 @@
+certManager:
+  installCRDs: true  # Ensures that CRDs are installed
+  namespace: cert-manager
+
+clusterIssuer:
+  name: letsencrypt-prod
+  email: "eko.5samuel@gmail.com"  # Change this to your email
+  server: "https://acme-v02.api.letsencrypt.org/directory"
+  privateKeySecretName: "letsencrypt-prod"
+  ingressClass: "nginx"

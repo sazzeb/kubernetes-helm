@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: outlines-info-cert
+spec:
+  secretName: outlines-info-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: outlines.info
+  dnsNames:
+    - outlines.info
+    - www.outlines.info

@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: bullboard-outlines-cert
+  namespace: {{ .Values.certManager.namespace }}
+spec:
+  secretName: bullboard-info-tls
+  issuerRef:
+    name: {{ .Values.clusterIssuer.name }}
+    kind: ClusterIssuer
+  commonName: bullboard.outlines.info
+  dnsNames:
+    - bullboard.outlines.info
+    - www.bullboard.outlines.info

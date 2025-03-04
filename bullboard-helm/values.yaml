@@ -10,12 +10,23 @@ service:
   type: LoadBalancer
   port: 80
   targetPort: 3000
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "your-certificate-id"  # Replace with your actual certificate ID
+    service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
 
 ingress:
   enabled: true
-  host: bullboard.outlines.info
+  className: "nginx"
+  hosts:
+    - bullboard.outlines.info
+    - www.bullboard.outlines.info
+  redirectHost: https://www.bullboard.outlines.info
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: "/"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/permanent-redirect: "https://www.bullboard.outlines.info"
     cert-manager.io/cluster-issuer: letsencrypt-prod
   tls:
     enabled: true

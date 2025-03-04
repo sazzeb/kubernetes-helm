@@ -10,9 +10,15 @@ service:
   type: LoadBalancer
   port: 80
   targetPort: 9009
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "your-certificate-id"  # Replace with your actual certificate ID
+    service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
 
 ingress:
   enabled: true
+  className: "nginx"
   hosts:
     - outlines.info
     - www.outlines.info

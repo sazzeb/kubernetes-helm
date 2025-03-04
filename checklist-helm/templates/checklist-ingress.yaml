@@ -6,6 +6,7 @@ metadata:
   annotations:
     {{- toYaml .Values.ingress.annotations | nindent 4 }}
 spec:
+  ingressClassName: {{ .Values.ingress.className }}  # 🔹 Ensuring Ingress class is set
   rules:
     {{- range .Values.ingress.hosts }}
     - host: {{ . }}

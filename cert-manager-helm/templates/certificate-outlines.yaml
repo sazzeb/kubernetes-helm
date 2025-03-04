@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: outlines-info-cert
+  namespace: {{ .Values.certManager.namespace }}
+spec:
+  secretName: outlines-info-tls
+  issuerRef:
+    name: {{ .Values.clusterIssuer.name }}
+    kind: ClusterIssuer
+  commonName: outlines.info
+  dnsNames:
+    - outlines.info
+    - www.outlines.info
